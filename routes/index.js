@@ -2,9 +2,13 @@ const express = require('express')
 const app = express();
 const db = require('../connections')
 const blog = require('../models/blog');
+const trainingsRouter = require('./trainings')
+
 const { any } = require('webidl-conversions');
+
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
+app.use('/trainings', trainingsRouter)
 
 app.get('/blog', async (req,res) => {
     blogs = await blog.find({})
