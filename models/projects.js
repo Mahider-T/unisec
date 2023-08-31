@@ -3,12 +3,16 @@ const mongoose = require('mongoose');
 const projectsSchema = new mongoose.Schema({
     title:{
         type: String,
+        required: true,
     },
     description:{
         type: String,
+        required: true,
     },
     starts_on:{
         type: Date,
+        required: true,
+        default: Date.now
     },
     ends_on:{
         type: Date,
@@ -18,7 +22,10 @@ const projectsSchema = new mongoose.Schema({
         enum: ['Done', 'In progress', 'Not started'],
     },
     tags:{
-        type:[String]
+        type:[String],
+    },
+    participants:{
+        type:Object,
     }
 })
 

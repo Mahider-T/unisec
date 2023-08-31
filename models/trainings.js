@@ -3,21 +3,23 @@ const mongoose = require('mongoose')
 const trainingSchema = new mongoose.Schema({
     title:{
         type: String,
-        require: true
+        required: true
     },
    description:{
         type: String,
-        require: true
+        required: true
    },
    starts_on:{
-    type: Date,
+        type: Date,
+        required: true,
+        default: Date.now,
    },
    ends_on:{
-    type: Date,
+        type: Date,
    },
    status:{
-    type: String,
-    enum: ['Done', 'In progress', 'Not started']
+        type: String,
+        enum: ['Done', 'In progress', 'Not started']
    }
 })
 
