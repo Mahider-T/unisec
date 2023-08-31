@@ -12,6 +12,9 @@ const trainingSchema = new mongoose.Schema({
    starts_on:{
     type: Date,
    },
+   ends_on:{
+    type: Date,
+   },
    status:{
     type: String,
     enum: ['Done', 'In progress', 'Not started']
