@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 
-const newsSchema = new mongoose.schema({
+const newsSchema = new mongoose.Schema({
     title:{
         type: String,
         required: true,
@@ -9,8 +9,8 @@ const newsSchema = new mongoose.schema({
     },
 
     image:{
+        type: Buffer,
         required: true,
-        data: Buffer,
         contentType: String,
     },
     body:{
@@ -30,3 +30,6 @@ const newsSchema = new mongoose.schema({
         required: true,
     }
 })
+
+const news = mongoose.model("News", newsSchema);
+module.exports = news;

@@ -33,5 +33,5 @@ const trainingSchema = new mongoose.Schema({
      }
 })
 
-const training = mongoose.model('Training',trainingSchema)
-module.exports = training;
+const trainings = mongoose.model('Training',trainingSchema)
+module.exports = trainings;

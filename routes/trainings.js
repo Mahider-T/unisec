@@ -7,8 +7,14 @@ const router = express.Router();
 
 router.post("/create", async(req, res)=>{
     try{
-        await training.create(req.body)
-        res.json(req.body)
+        const newTraining  = new training({
+            title : req.body.title,
+            description : req.body.description,
+            starts_on : req.body.starts_on,
+            ends_on : req.body.ends_on,
+        })
+        await newTraining.save()
+        res.json(newTraining)
     }catch(error){
         res.status(500).send(error)
     }
