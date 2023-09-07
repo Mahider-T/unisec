@@ -19,7 +19,7 @@ const trainingSchema = new mongoose.Schema({
    },
    status:{
      type: String,
-     enum: ['Done', 'In progress', 'Not started'],
+     enum: ['Done', 'Underway', 'Upcoming'],
      get: function(){
                const today = new Date();
                if(this.ends_on > today){
