@@ -2,22 +2,27 @@ const training = require('../models/trainings')
 const express = require('express');
 const router = express.Router();
 
-// app.use(express.urlencoded({extended: true}))
-// app.use(express.json())
+router.use(express.urlencoded({extended: true}))
+router.use(express.json())
 
-router.post("/create", async(req, res)=>{
+router.post("/create", async(req,res)=>{
     try{
-        const newTraining  = new training({
-            title : req.body.title,
-            description : req.body.description,
-            starts_on : req.body.starts_on,
-            ends_on : req.body.ends_on,
+        // console.log(req.body)
+        // const {title, description, starts_on, ends_on} = req.body;
+        // training.create({title, description, starts_on, ends_on}).then((train) =>{console.log(train)}).catch((error)=>{console.log(error)})
+        const newTraining = new training({
+            title: req.body.title,
+            description: req.body.description,
+            starts_on: req.body.starts_on,
+            ends_on: req.body.ends_on
         })
         await newTraining.save()
-        res.json(newTraining)
-    }catch(error){
+        res.send(newTraining)
+    }
+    catch(error){
         res.status(500).send(error)
     }
+    
 })
 
 router.get("/", async(req, res)=>{
