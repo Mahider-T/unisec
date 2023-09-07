@@ -5,6 +5,7 @@ const router = express.Router();
 router.use(express.urlencoded({extended: true}))
 router.use(express.json())
 
+//Add new training to the database
 router.post("/create", async(req,res)=>{
     try{
         // console.log(req.body)
@@ -14,7 +15,8 @@ router.post("/create", async(req,res)=>{
             title: req.body.title,
             description: req.body.description,
             starts_on: req.body.starts_on,
-            ends_on: req.body.ends_on
+            ends_on: req.body.ends_on,
+            status: req.body.status
         })
         await newTraining.save()
         res.send(newTraining)
@@ -25,17 +27,21 @@ router.post("/create", async(req,res)=>{
     
 })
 
+
+//List all the trainings in the database
 router.get("/", async(req, res)=>{
     try{
-        const trainings = await training.find({})
+        const trainings = await training.find({}).sort({starts_on : -1})
         res.send(trainings);
     }catch(error){
         res.status(500).send(error)
     }    
 })
+
+//Get a training by id
 router.get("/:id", async(req,res)=>{
     try{
-        console.log(trainingId)
+        console.log(req.params.id)
         const oneTraining = await training.findOne({
             _id: req.params.id
         })
@@ -45,6 +51,7 @@ router.get("/:id", async(req,res)=>{
     }
 })
 
+//update a training specified by id
 router.put("/:id", async(req,res)=>{
     id = req.params.id;
     const exists = await training.findOne({_id: id})
@@ -65,8 +72,52 @@ router.put("/:id", async(req,res)=>{
     }catch(error){
         res.status(500).send(error)
     }
-
 })
+
+//Paginated view of trainings (3 at a time) sorted by start time 
+router.get("/paginated/:pageNumber", async(req, res)=>{
+    const pageNumber = req.params.pageNumber || 1;
+    const pageSize = 3;
+    try{
+        const paginatedTrainings = await training.find({}).sort({starts_on : 1}).skip((pageNumber - 1)*pageSize).limit(pageSize)
+        res.json(paginatedTrainings)
+    }
+    catch(error){
+        res.status(500).send(error);
+    }  
+})
+
+//Get all trainings that are of "Done" status
+
+router.get("/status/done", async(req, res)=>{
+    try{
+        const done = await training.find({status: "Done"})
+        res.send(done)
+        // const trainings = await training.find({}).sort({starts_on : -1})
+        // res.send(trainings);
+    }catch(error){
+        res.status(500).send(error.message)
+    }
+})
+
+router.get("status/underway", async(req, res)=>{
+    try{
+        const underway = await training.find({status: "Done"})
+        res.send(underway)
+    }catch(error){
+        res.status(500).send(error)
+    }
+})
+
+router.get("status/upcoming", async(req, res)=>{
+    try{
+        const  upcoming = await training.find({status: "Upcoming"})
+        res.send(upcoming)
+    }catch(error){
+        res.status(500).send(error)
+    }
+})
+
 
 
 module.exports = router;
