@@ -93,23 +93,21 @@ router.get("/status/done", async(req, res)=>{
     try{
         const done = await training.find({status: "Done"})
         res.send(done)
-        // const trainings = await training.find({}).sort({starts_on : -1})
-        // res.send(trainings);
     }catch(error){
         res.status(500).send(error.message)
     }
 })
 
-router.get("status/underway", async(req, res)=>{
+router.get("/status/underway", async(req, res)=>{
     try{
-        const underway = await training.find({status: "Done"})
+        const underway = await training.find({status: "Underway"})
         res.send(underway)
     }catch(error){
         res.status(500).send(error)
     }
 })
 
-router.get("status/upcoming", async(req, res)=>{
+router.get("/status/upcoming", async(req, res)=>{
     try{
         const  upcoming = await training.find({status: "Upcoming"})
         res.send(upcoming)
