@@ -16,20 +16,11 @@ const trainingSchema = new mongoose.Schema({
    ends_on:{
         type: Date,
    },
-//    status:{
-//      type: String,
-//      enum: ['Done', 'In progress', 'Not started'],
-//      get: function(){
-//                const today = new Date();
-//                if(this.ends_on > today){
-//                    return 'Done';
-//                }else if(this.starts_on <= today && this.ends_on >= today){
-//                    return 'In progress';
-//                }else{
-//                    return 'Not started';
-//                }
-//           }
-//      }
+   status:{
+     type: String,
+     enum: ['Done', 'Underway', 'Upcoming'],
+     }
+
 })
 
 const trainings = mongoose.model('Training',trainingSchema)
