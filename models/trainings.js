@@ -11,7 +11,6 @@ const trainingSchema = new mongoose.Schema({
    },
    starts_on:{
         type: Date,
-        required: true,
         default: Date.now,
    },
    ends_on:{
@@ -21,6 +20,7 @@ const trainingSchema = new mongoose.Schema({
      type: String,
      enum: ['Done', 'Underway', 'Upcoming'],
      }
+
 })
 
 const trainings = mongoose.model('Training',trainingSchema)

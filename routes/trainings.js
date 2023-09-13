@@ -22,7 +22,16 @@ router.post("/create", async(req,res)=>{
         res.send(newTraining)
     }
     catch(error){
-        res.status(500).send(error)
+        // const newTraining  = new training({
+        //     title : req.body.title,
+        //     description : req.body.description,
+        //     starts_on : req.body.starts_on,
+        //     ends_on : req.body.ends_on
+        // })
+        // await newTraining.save()
+        let request = req;
+        // console.log(req);
+        res.send({"one": `${req.body.body}`})
     }
     
 })
