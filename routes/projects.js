@@ -1,6 +1,7 @@
 const Projects = require('../models/projects');
 const express = require('express');
 const router = express.Router();
+router.use(express.json())
 
 
 // Get all projects
