@@ -8,7 +8,6 @@ router.use(express.json())
 //Add new training to the database
 router.post("/create", async(req,res)=>{
     try{
-<<<<<<< HEAD
         // console.log(req.body)
         // const {title, description, starts_on, ends_on} = req.body;
         // training.create({title, description, starts_on, ends_on}).then((train) =>{console.log(train)}).catch((error)=>{console.log(error)})
@@ -23,7 +22,6 @@ router.post("/create", async(req,res)=>{
         res.send(newTraining)
     }
     catch(error){
-=======
         // const newTraining  = new training({
         //     title : req.body.title,
         //     description : req.body.description,
@@ -34,9 +32,6 @@ router.post("/create", async(req,res)=>{
         let request = req;
         // console.log(req);
         res.send({"one": `${req.body.body}`})
-    }catch(error){
->>>>>>> main
-        res.status(500).send(error)
     }
     
 })
