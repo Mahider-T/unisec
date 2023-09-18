@@ -21,10 +21,10 @@ const eventSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    // status:{
-    //     type: String,
-    //     enum: ['Done', 'In progress', 'Not started'],
-    // },
+    status:{
+        type: String,
+        enum: ['Done', 'In progress', 'Not started'],
+    },
     tags:{
         type:[String],
     },
