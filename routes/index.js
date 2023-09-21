@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-// const { any } = require("webidl-conversions");
+const { any } = require("webidl-conversions");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json()); //the middlewares should be declared before the matters since the order matters
 
@@ -21,9 +21,7 @@ app.use("/projects", projectsRouter);
 const eventsRouter = require('./events')
 app.use('/events', eventsRouter);
 
-const { any } = require('webidl-conversions');
-app.use(express.urlencoded({extended: true}))
-app.use(express.json())
+
 
 app.listen(8080, ()=>{
     console.log("Listening on port 8080")
