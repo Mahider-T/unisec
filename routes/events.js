@@ -1,20 +1,21 @@
 const events = require('../models/events');
 const express = require('express');
 const trainings = require('../models/trainings');
+const upload = require("../config/event-multer")
 const router = express.Router();
 router.use(express.json())
 
 //endpoints go here
 
 //Create an event
-router.post('/create', async (req,res)=>{
+router.post('/create',upload.single('image'), async (req,res)=>{
     try{
         const newEvent = new events({
             title: req.body.title,
             description: req.body.description,
             starts_on: req.body.starts_on,
             ends_on: req.body.ends_on,
-            imageURL: req.body.imageURL,
+            imageURL: req.file.path,
             status: req.body.status,
             tags: req.body.tags,
         })
@@ -51,6 +52,23 @@ router.get("/find/:id", async (req, res) =>{
         res.status(500).send(e)
     }
 })
+
+//fetch an image of an event
+router.get('/eventImage/:eventId', async (req, res) => {
+    // Retrieve the trial from the database.
+    try{
+      const theEvent = await events.findById(req.params.eventId);
+      if(!theEvent){
+        return res.status(404).send('Event not found');
+      }
+      // Send the image file to the client.
+      imageURL = `/home/oogway/unisec/${theEvent.imageURL}`
+      console.log(imageURL)
+      res.sendFile(imageURL);
+    }catch(e){
+      res.status(500).send(e);
+    }
+  });
 //Update event by id
 
 router.put("/:id", async (req, res)=>{
