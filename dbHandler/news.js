@@ -5,8 +5,8 @@ const Author = require("../models/authorModel");
 const path = require("path");
 const fs = require("fs");
 
-//change connection to mongoDB atlas
-mongoose.connect("mongodb://localhost/unisecEthiopia");
+// change connection to mongoDB atlas
+// mongoose.connect("mongodb://localhost/unisecEthiopia");
 
 //create a new post
 const createNewsDb = async (title, body, authorId = null, imageName = null) => {
