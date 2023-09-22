@@ -25,15 +25,14 @@ const updateNewsDb = async (id, title, body, imageName = null) => {
     let news = await News.findById(id);
 
     if (!news) {
-      let filePath = path.join("../client/public/images/", imageName);
+      let filePath = path.join("uploads/news/", imageName);
       fs.unlink(filePath, () => {
         console.log("new image removed!");
       });
       throw new Error (`post with id ${id} not found.`);
 
     } else {
-      let filePath = path.join("../client/public/images/", news.imageName);
-
+      let filePath = path.join("uploads/news/", news.imageName);
       fs.unlink(filePath, () => {
         console.log("old image removed\n");
       });
@@ -56,7 +55,7 @@ const deleteNewsDb = async (id) => {
       
       news = await News.findByIdAndDelete(id);
       if(news.imageName){
-        let filePath = path.join("../client/public/images/", news.imageName);
+        let filePath = path.join("uploads/news/", news.imageName);
         fs.unlink(filePath, () => {
           console.log("image deleted successfully");
         });

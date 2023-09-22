@@ -4,7 +4,7 @@ const multer = require('multer')
 const storage = multer.diskStorage({
     destination:(req, file, cb) => {
         // cb(null, '../client/public/images')
-        cb(null, '../uploads/news')
+        cb(null, 'uploads/news')
         //change the path
     },
     filename:(req, file, cb) => {
@@ -15,7 +15,7 @@ const storage = multer.diskStorage({
 
 const fileFilter = (req, file, cb) => {
 
-    console.log(file.mimetype)
+    // console.log(file.mimetype)
     const type = file.mimetype.split('/');//to get the image text 
     if(type[0] === 'image'){
         cb(null, true)   
