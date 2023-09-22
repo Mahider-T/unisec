@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { getAllNews, createNews, getNews, getNewsBylimit, updateNews, deleteNews } 
         = require('../controllers/news.js')
-const uploadImage = require('../config/multer.js')
+const uploadImage = require('../config/news-multer.js')
 
 
 //handle route for query parameters prior to fetching all news

@@ -49,7 +49,7 @@ router.delete(
     if (!member) {
       return res.status(404).json({ error: "Member not found" });
     }
-    const { any } = require('webidl-conversions');
+    // const { any } = require('webidl-conversions');
     app.use(express.urlencoded({extended: true}))
     app.use(express.json())
     await Member.deleteOne({ _id: memberId })
