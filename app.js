@@ -21,6 +21,11 @@ app.use("/projects", projectsRouter);
 const eventsRouter = require('./routes/events')
 app.use('/events', eventsRouter);
 
+//handle all unspecified routes to this server
+app.all('*', (req, res)=> {
+    res.status(404).send('Requested resource not found!')
+})
+
 app.listen(8080, ()=>{
     console.log("Listening on port 8080")
 })
