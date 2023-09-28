@@ -101,9 +101,9 @@ const getByStatus = async(req, res)=>{
 
 const searchTraining = async(req, res)=>{
     const key = req.query.key;
-    const regex = new RegExp(key, i);
+    const regex = new RegExp(key, 'i');
     try{
-        const trainings = await projects.find({
+        const trainings = await training.find({
             $or:[{title: {$regex: regex}},
                  {description: {$regex: regex}}
                 ]
