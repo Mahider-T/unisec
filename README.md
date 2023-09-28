@@ -16,9 +16,9 @@ You can use any API building application like Postman to test the API endpoints 
 ## API Endpoints
 1. ## Events
    POST /events/create
-     -Description: Creates a new event and inserts it to the database.
-     -Request: JSON file containing the proper fields including an image for each event.
-     -Response: The newly created document as JSON file.
+     -Description: Creates a new event and inserts it to the database.<br>
+     -Request: JSON file containing the proper fields including an image for each event.<br>
+     -Response: The newly created document as JSON file.<br>
    GET /events/
      -Description: Get a list of all events.
      -Request: None.
