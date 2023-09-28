@@ -21,26 +21,26 @@ You can use any API building application like Postman to test the API endpoints 
      > -Response: The newly created document as JSON file.<br>
      
    GET /events/<br>
-     -Description: Get a list of all events.<br>
-     -Request: None.<br>
-     -Response: JSON file with a list of all events in events collection.<br>
+    > -Description: Get a list of all events.<br>
+    > -Request: None.<br>
+    > -Response: JSON file with a list of all events in events collection.<br>
      
    GET /events/find/:id <br>
-     -Description: Get an event with a given id.<br>
-     -Request: None.<br>
-     -Response: JSON file of the an event with the given id.<br>
+    > -Description: Get an event with a given id.<br>
+    > -Request: None.<br>
+    > -Response: JSON file of the an event with the given id.<br>
      
    GET /events/search <br>
-     -Description: Search an event by title or description.<br>
-     -Request: Searching term or sub-string as query parameter. <br>
-     -Response: JSON file of documents that match the request. <br>
+    > -Description: Search an event by title or description.<br>
+    > -Request: Searching term or sub-string as query parameter. <br>
+    > -Response: JSON file of documents that match the request. <br>
      
    PUT /events/:id <br>
-     -Description: Update an event with a given id. <br>
-     -Request: event id as parameter and JSON file for the updated body. <br>
-     -Response: updated document as JSON file. <br>
+    > -Description: Update an event with a given id. <br>
+    > -Request: event id as parameter and JSON file for the updated body. <br>
+    > -Response: updated document as JSON file. <br>
      
    DELETE /events/:id <br>
-     -Description: Delete event by id <br>
-     -Request: event id as parameter. <br>
-     -Response: "Event deleted successfully" on successful operation. <br>
+    > -Description: Delete event by id <br>
+    > -Request: event id as parameter. <br>
+    > -Response: "Event deleted successfully" on successful operation. <br>
