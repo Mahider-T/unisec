@@ -2,7 +2,7 @@
 // const multer = require("multer")
 const path = require("path")
 
-const {createNewsDb, getAllNewsDb, getNewsDb, getNewsByLimitDb, updateNewsDb, deleteNewsDb } 
+const {createNewsDb, getAllNewsDb, getNewsDb, getNewsByLimitDb, updateNewsDb, deleteNewsDb, deleteImage } 
         = require('../dbHandler/news')
 
 const asyncHandler = fn => (req, res, next) =>
@@ -51,11 +51,10 @@ const getNews = asyncHandler(async (req, res) => {
 });
 
 const createNews = asyncHandler(async (req, res) => {
-
+    let  imageName = null;
     try{
         const {title, body , authorId } = req.body;
         const image  = req.file;
-        let  imageName = null;
         if(image){
             imageName = image.filename;
         }
@@ -63,6 +62,7 @@ const createNews = asyncHandler(async (req, res) => {
         res.status(201).json({success: true, data: await createNewsDb(title, body, authorId, imageName)})
     }
     catch(e){
+        deleteImage(imageName)
         res.status(400).json({success: false, message: e.message})
     }
 })

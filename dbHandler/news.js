@@ -8,6 +8,13 @@ const fs = require("fs");
 // change connection to mongoDB atlas
 // mongoose.connect("mongodb://localhost/unisecEthiopia");
 
+function deleteImage(imageName){
+  let filePath = path.join("uploads/news/", imageName);
+  fs.unlink(filePath, () => {
+    console.log("image removed!");
+  });
+}
+
 //create a new post
 const createNewsDb = async (title, body, authorId = null, imageName = null) => {
     const news = await News.create({
@@ -25,17 +32,11 @@ const updateNewsDb = async (id, title, body, imageName = null) => {
     let news = await News.findById(id);
 
     if (!news) {
-      let filePath = path.join("uploads/news/", imageName);
-      fs.unlink(filePath, () => {
-        console.log("new image removed!");
-      });
+      deleteImage(imageName)
       throw new Error (`post with id ${id} not found.`);
 
     } else {
-      let filePath = path.join("uploads/news/", news.imageName);
-      fs.unlink(filePath, () => {
-        console.log("old image removed\n");
-      });
+      deleteImage(news.imageName)
       news.title = title;
       news.body = body;
       news.imageName = imageName;
@@ -55,10 +56,7 @@ const deleteNewsDb = async (id) => {
       
       news = await News.findByIdAndDelete(id);
       if(news.imageName){
-        let filePath = path.join("uploads/news/", news.imageName);
-        fs.unlink(filePath, () => {
-          console.log("image deleted successfully");
-        });
+       deleteImage(news.imageName)
       }
       
       return `post with id ${id} deleted successfully.`;
@@ -123,4 +121,5 @@ module.exports = {
   getNewsByLimitDb,
   updateNewsDb,
   deleteNewsDb,
+  deleteImage
 };
