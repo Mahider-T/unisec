@@ -66,10 +66,6 @@ router.delete(
   asyncHandler(async (req, res) => {
     const memberId = req.params.id;
     const member = await Members.findById(memberId);
-    // const { any } = require('webidl-conversions');
-    // app.use(express.urlencoded({extended: true}))
-    // app.use(express.json())
-    //i didn't understand why you added this since the middleware in on app.js and this route works without this code
 
     if (!member) {
       return res.status(404).json({ error: "Member not found" });
