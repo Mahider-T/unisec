@@ -1,6 +1,4 @@
-# UNISEC-backend
-
-Back-end for UNISEC-Ethiopia website using express.js and MongoDB.
+# UNISEC
 
 ## Installation
 
